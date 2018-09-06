@@ -1,0 +1,14 @@
+C:\dev\NYT Web API\NYTWebApi\bin\Debug\netcoreapp2.1\NYTWebApi.deps.json
+C:\dev\NYT Web API\NYTWebApi\bin\Debug\netcoreapp2.1\NYTWebApi.runtimeconfig.json
+C:\dev\NYT Web API\NYTWebApi\bin\Debug\netcoreapp2.1\NYTWebApi.runtimeconfig.dev.json
+C:\dev\NYT Web API\NYTWebApi\bin\Debug\netcoreapp2.1\NYTWebApi.dll
+C:\dev\NYT Web API\NYTWebApi\bin\Debug\netcoreapp2.1\NYTWebApi.pdb
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.csprojAssemblyReference.cache
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.csproj.CoreCompileInputs.cache
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.RazorAssemblyInfo.cache
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.RazorAssemblyInfo.cs
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.AssemblyInfoInputs.cache
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.AssemblyInfo.cs
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.RazorTargetAssemblyInfo.cache
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.dll
+C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.pdb
