@@ -3,15 +3,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NYTWebApi.Models;
 using NYTWebApi.Services;
+using Microsoft.AspNetCore.Cors;
 
 namespace NYTWebApi.Controllers
 {
     //[Route("api/[controller]")]
+
     [Route("[controller]")]
     [ApiController]
     public class NewsController : ControllerBase
     {
-        //localhost:1233/NombreDelControlador/nombreDelMetodo
         //GET /values
         [HttpGet]
         public async Task<RootObj> GetAsync()
