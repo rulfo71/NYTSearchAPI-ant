@@ -26,7 +26,6 @@ namespace NYTWebApi.Models
         public Headline headline { get; set; }
         public DateTime pub_date { get; set; }
         public double score { get; set; }
-
     }
 
     public class Headline
