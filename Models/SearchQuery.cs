@@ -12,4 +12,4 @@ namespace NYTWebApi.Models
             End_date = end_date;
         }
     }
-}
+}   

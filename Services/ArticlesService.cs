@@ -22,11 +22,14 @@ namespace NYTWebApi.Services
             Console.WriteLine(responseBody);
 
             RootObj rootObj = JsonConvert.DeserializeObject<RootObj>(responseBody);
+            if (rootObj.status != "OK")
+            {
+                //que hago si falla?
+            }
             //keep first 10
             rootObj.response.docs = rootObj.response.docs.Take(10);
-            
+
             return rootObj;
         }
     }
-
 }

@@ -23,42 +23,5 @@ namespace NYTWebApi.Controllers
 
             return await ArticlesService.getjsonAsync(theme, begin_date, end_date);
         }
-
-
-        // [HttpPost]
-        // public void Post(SearchQuery query)
-        // {
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine(query.Theme);
-        //     // Console.WriteLine(query.Begin_date);
-        //     // Console.WriteLine(query.End_date);
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-
-        //     this.query = new SearchQuery(query.Theme, query.Begin_date, query.End_date);
-        //     Console.WriteLine("**********" + this.query.Theme);
-        // }
-
-        // // GET api/values/5
-        // [HttpGet("{id}")]
-        // public ActionResult<string> Get(int id)
-        // {
-        //     return "valuuuue";
-        // }
-
-        // // PUT api/values/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody] string value)
-        // {
-        // }
-
-        // // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
     }
 }
