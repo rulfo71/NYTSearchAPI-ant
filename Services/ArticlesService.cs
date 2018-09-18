@@ -19,14 +19,29 @@ namespace NYTWebApi.Services
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseBody);
-
+            //Console.WriteLine(responseBody);
             RootObj rootObj = JsonConvert.DeserializeObject<RootObj>(responseBody);
             //keep first 10
             rootObj.response.docs = rootObj.response.docs.Take(10);
-            
+            foreach (var article in rootObj.response.docs)
+            {
+                var hc = new HttpClient();
+                HttpResponseMessage response_url = null;
+                try
+                {
+                    response = await hc.GetAsync(article.web_url);
+                }
+                catch (HttpRequestException)
+                {
+                    article.web_url="";
+                    //throw new PageNotFoundException("Ooops! NYT is not working!");
+                }
+                //Console.WriteLine(article.web_url);
+            }
+
             return rootObj;
         }
+
     }
 
 }

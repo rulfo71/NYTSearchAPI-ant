@@ -12,3 +12,17 @@ C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.AssemblyInfo.cs
 C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.RazorTargetAssemblyInfo.cache
 C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.dll
 C:\dev\NYT Web API\NYTWebApi\obj\Debug\netcoreapp2.1\NYTWebApi.pdb
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\bin\Debug\netcoreapp2.1\NYTWebApi.deps.json
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\bin\Debug\netcoreapp2.1\NYTWebApi.runtimeconfig.json
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\bin\Debug\netcoreapp2.1\NYTWebApi.runtimeconfig.dev.json
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\bin\Debug\netcoreapp2.1\NYTWebApi.dll
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\bin\Debug\netcoreapp2.1\NYTWebApi.pdb
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.csprojAssemblyReference.cache
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.csproj.CoreCompileInputs.cache
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.RazorAssemblyInfo.cache
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.RazorAssemblyInfo.cs
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.AssemblyInfoInputs.cache
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.AssemblyInfo.cs
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.RazorTargetAssemblyInfo.cache
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.dll
+C:\Users\tomip\Google Drive\Hexacta\NYTSearchAPI\obj\Debug\netcoreapp2.1\NYTWebApi.pdb
