@@ -1,47 +1,67 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NYTWebApi.Models;
+using System.Web.Http;
 
 namespace NYTWebApi.Services
 {
-    public static class ArticlesService
+    public class ArticlesService
     {
-        public static async Task<RootObj> getjsonAsync(string theme, string begin_date, string end_date)
+        public async Task<List<Doc>> GetjsonAsync(string theme, string begin_date, string end_date)
         {
+
             var list_of_fields = "web_url,snippet,headline,pub_date";
-            var api_key = "0e73567c463040c6a9e0e115a807f993";
             var orderBy = "newest";
-            var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + api_key + "&q=" + theme + "&begin_date=" + begin_date + "&end_date=" + end_date + "&fl=" + list_of_fields + "&sort=" + orderBy;
+
+            var urlService = new UrlService();
+            var url = urlService.getUrl();
+            var urlComplete = $"{url}&q={theme}&begin_date={begin_date}&end_date={end_date}&fl={list_of_fields}&sort={orderBy}";
             var client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
+            HttpResponseMessage response = await client.GetAsync(urlComplete);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException)
+            {
+
+                response.StatusCode = HttpStatusCode.ServiceUnavailable;
+
+            }
             string responseBody = await response.Content.ReadAsStringAsync();
-            //Console.WriteLine(responseBody);
             RootObj rootObj = JsonConvert.DeserializeObject<RootObj>(responseBody);
+
             //keep first 10
             rootObj.response.docs = rootObj.response.docs.Take(10);
+
+            //request a la url de cada article
             foreach (var article in rootObj.response.docs)
             {
                 var hc = new HttpClient();
-                HttpResponseMessage response_url = null;
                 try
                 {
                     response = await hc.GetAsync(article.web_url);
+                    response.EnsureSuccessStatusCode();
                 }
                 catch (HttpRequestException)
                 {
-                    article.web_url="";
-                    //throw new PageNotFoundException("Ooops! NYT is not working!");
+                    article.web_url = "";
                 }
-                //Console.WriteLine(article.web_url);
             }
-
-            return rootObj;
+            return rootObj.response.docs.ToList();
         }
-
     }
 
+    // public class NYtimesBroken : Exception
+    // {
+    //     public NYtimesBroken(string message)
+    //        : base(message)
+    //     {
+    //     }
+    // }
 }

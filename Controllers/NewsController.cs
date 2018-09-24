@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using NYTWebApi.Models;
 using NYTWebApi.Services;
 using Microsoft.AspNetCore.Cors;
+using System.Collections.Generic;
 
 namespace NYTWebApi.Controllers
 {
@@ -15,50 +16,11 @@ namespace NYTWebApi.Controllers
     {
         //GET /values
         [HttpGet]
-        public async Task<RootObj> GetAsync()
+        public async Task<List<Doc>> GetAsync([FromQuery] UrlParameters FilterParams)
         {
-            string theme = HttpContext.Request.Query["theme"].ToString();
-            string begin_date = HttpContext.Request.Query["begin_date"].ToString();
-            string end_date = HttpContext.Request.Query["end_date"].ToString();
-
-            return await ArticlesService.getjsonAsync(theme, begin_date, end_date);
+            var articlesService = new ArticlesService();
+            return await articlesService.GetjsonAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
         }
-
-
-        // [HttpPost]
-        // public void Post(SearchQuery query)
-        // {
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine(query.Theme);
-        //     // Console.WriteLine(query.Begin_date);
-        //     // Console.WriteLine(query.End_date);
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-        //     // Console.WriteLine("****");
-
-        //     this.query = new SearchQuery(query.Theme, query.Begin_date, query.End_date);
-        //     Console.WriteLine("**********" + this.query.Theme);
-        // }
-
-        // // GET api/values/5
-        // [HttpGet("{id}")]
-        // public ActionResult<string> Get(int id)
-        // {
-        //     return "valuuuue";
-        // }
-
-        // // PUT api/values/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody] string value)
-        // {
-        // }
-
-        // // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
     }
+
 }
