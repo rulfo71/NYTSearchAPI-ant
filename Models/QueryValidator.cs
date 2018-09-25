@@ -17,23 +17,42 @@ namespace NYTWebApi.Models
 
         public void validateData()
         {
-            if (this.anyNull())
+            if (this.verifyNull())
             {
+                //preguntarle a mati que hacer en estos casos
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
                 Console.WriteLine("UEPAAA vino alguno empty!!! guardaaaaa");
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
             }
+            if (this.verifyDates())
+            {
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
+                Console.WriteLine("End date es mayor que begin!");
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
+                Console.WriteLine("*********");
+            }
+
         }
 
-        private Boolean anyNull()
+        private bool verifyDates()
         {
-            if (string.IsNullOrEmpty(Theme) || string.IsNullOrEmpty(Begin_date) || string.IsNullOrEmpty(End_date))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            int begin_dateInt;
+            int end_dateInt;
+            Int32.TryParse(this.Begin_date,out begin_dateInt);
+            Int32.TryParse(this.End_date,out end_dateInt);
+            return (begin_dateInt > end_dateInt);
+        }
 
+        private bool verifyNull()
+        {
+            return (string.IsNullOrEmpty(Theme) || string.IsNullOrEmpty(Begin_date) || string.IsNullOrEmpty(End_date));
         }
     }
 }
