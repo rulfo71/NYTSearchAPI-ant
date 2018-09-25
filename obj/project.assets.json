@@ -11501,24 +11501,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tpulenta\\.nuget\\packages\\": {},
+    "C:\\Users\\tomip\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\dev\\NYT Web API\\NYTWebApi\\NYTWebApi.csproj",
+      "projectUniqueName": "c:\\Users\\tomip\\Google Drive\\Hexacta\\NYTSearchAPI\\NYTWebApi.csproj",
       "projectName": "NYTWebApi",
-      "projectPath": "c:\\dev\\NYT Web API\\NYTWebApi\\NYTWebApi.csproj",
-      "packagesPath": "C:\\Users\\tpulenta\\.nuget\\packages\\",
-      "outputPath": "c:\\dev\\NYT Web API\\NYTWebApi\\obj\\",
+      "projectPath": "c:\\Users\\tomip\\Google Drive\\Hexacta\\NYTSearchAPI\\NYTWebApi.csproj",
+      "packagesPath": "C:\\Users\\tomip\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\tomip\\Google Drive\\Hexacta\\NYTSearchAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\tpulenta\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\tomip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

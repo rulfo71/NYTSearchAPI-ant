@@ -5,6 +5,7 @@ using NYTWebApi.Models;
 using NYTWebApi.Services;
 using Microsoft.AspNetCore.Cors;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace NYTWebApi.Controllers
 {
@@ -14,12 +15,16 @@ namespace NYTWebApi.Controllers
     [ApiController]
     public class NewsController : ControllerBase
     {
+        private IConfiguration configuration; 
+        public NewsController(IConfiguration iConfig){
+            configuration = iConfig; 
+        }
         //GET /values
         [HttpGet]
-        public async Task<List<Doc>> GetAsync([FromQuery] UrlParameters FilterParams)
+        public async Task<List<Doc>> GetAsync([FromQuery] NewsUrlParameters FilterParams)
         {
             var articlesService = new ArticlesService();
-            return await articlesService.GetjsonAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
+            return await articlesService.GetjsonAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date,this.configuration);
         }
     }
 

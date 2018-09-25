@@ -1,6 +1,6 @@
 namespace NYTWebApi.Models
 {
-    public class UrlParameters
+    public class NewsUrlParameters
     {
         public string Theme { get; set; }
         public string Begin_date { get; set; }
