@@ -23,8 +23,8 @@ namespace NYTWebApi.Controllers
         [HttpGet]
         public async Task<List<Doc>> GetAsync([FromQuery] NewsUrlParameters FilterParams)
         {
-            var articlesService = new ArticlesService();
-            return await articlesService.GetjsonAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date,this.configuration);
+            var articlesService = new ArticlesService(this.configuration);
+            return await articlesService.GetNewsAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
         }
     }
 
