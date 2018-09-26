@@ -11507,11 +11507,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\dev\\NYT Web API\\NYTWebApi\\NYTWebApi.csproj",
+      "projectUniqueName": "C:\\dev\\NYT Web API\\NYTWebApi\\NYTWebApi.csproj",
       "projectName": "NYTWebApi",
-      "projectPath": "c:\\dev\\NYT Web API\\NYTWebApi\\NYTWebApi.csproj",
+      "projectPath": "C:\\dev\\NYT Web API\\NYTWebApi\\NYTWebApi.csproj",
       "packagesPath": "C:\\Users\\tpulenta\\.nuget\\packages\\",
-      "outputPath": "c:\\dev\\NYT Web API\\NYTWebApi\\obj\\",
+      "outputPath": "C:\\dev\\NYT Web API\\NYTWebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
