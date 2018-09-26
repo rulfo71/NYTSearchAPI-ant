@@ -10,6 +10,7 @@ namespace NYTWebApi.Models
 
         public QueryValidator(string theme, string begin_date, string end_date)
         {
+            
             Theme = theme;
             Begin_date = begin_date;
             End_date = end_date;
@@ -17,23 +18,32 @@ namespace NYTWebApi.Models
 
         public void validateData()
         {
-            if (this.anyNull())
+            if (this.verifyNull())
             {
-                Console.WriteLine("UEPAAA vino alguno empty!!! guardaaaaa");
+                throw new EmptyDataException();
+
             }
+            if (this.verifyDates())
+            {
+                throw new WrongDatesException();
+
+            }
+
         }
 
-        private Boolean anyNull()
+        private bool verifyDates()
         {
-            if (string.IsNullOrEmpty(Theme) || string.IsNullOrEmpty(Begin_date) || string.IsNullOrEmpty(End_date))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
 
+            int begin_dateInt;
+            int end_dateInt;
+            Int32.TryParse(this.Begin_date,out begin_dateInt);
+            Int32.TryParse(this.End_date,out end_dateInt);
+            return (begin_dateInt > end_dateInt);
+        }
+
+        private bool verifyNull()
+        {
+            return (string.IsNullOrEmpty(Theme) || string.IsNullOrEmpty(Begin_date) || string.IsNullOrEmpty(End_date));
         }
     }
 }

@@ -17,7 +17,6 @@ namespace NYTWebApi.Services
         private HttpClient httpClient;
         private HttpResponseMessage response;
 
-        private QueryValidator validator;
         public ArticlesService(IConfiguration configuration)
         {
             this.configuration = configuration;
@@ -25,8 +24,6 @@ namespace NYTWebApi.Services
         }
         public async Task<List<Doc>> GetNewsAsync(string theme, string begin_date, string end_date)
         {
-            validator = new QueryValidator(theme,begin_date,end_date);
-            
 
 
             string urlConfig = configuration.GetSection("MySettings").GetSection("url").Value;
@@ -37,8 +34,6 @@ namespace NYTWebApi.Services
 
             var list_of_fields = "web_url,snippet,headline,pub_date";
             var orderBy = "newest";
-            
-            validator.validateData();
 
             var urlComplete = $"{url}&q={theme}&begin_date={begin_date}&end_date={end_date}&fl={list_of_fields}&sort={orderBy}";
 
@@ -49,9 +44,7 @@ namespace NYTWebApi.Services
             }
             catch (HttpRequestException)
             {
-
                 response.StatusCode = HttpStatusCode.ServiceUnavailable;
-
             }
             string responseBody = await response.Content.ReadAsStringAsync();
             RootObj rootObj = JsonConvert.DeserializeObject<RootObj>(responseBody);
@@ -78,12 +71,4 @@ namespace NYTWebApi.Services
             }
         }
     }
-
-    // public class NYtimesBroken : Exception
-    // {
-    //     public NYtimesBroken(string message)
-    //        : base(message)
-    //     {
-    //     }
-    // }
 }
