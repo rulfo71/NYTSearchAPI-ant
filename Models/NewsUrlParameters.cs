@@ -1,3 +1,5 @@
+using System;
+
 namespace NYTWebApi.Models
 {
     public class NewsUrlParameters

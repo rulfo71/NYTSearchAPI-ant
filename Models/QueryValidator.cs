@@ -1,49 +1,45 @@
 using System;
+using System.Collections.Generic;
 
 namespace NYTWebApi.Models
 {
     public class QueryValidator
     {
-        public String Theme { get; set; }
-        public String Begin_date { get; set; }
-        public String End_date { get; set; }
-
-        public QueryValidator(string theme, string begin_date, string end_date)
+        ExceptionsList listOfExceptions ; 
+        public QueryValidator()
         {
-            
-            Theme = theme;
-            Begin_date = begin_date;
-            End_date = end_date;
+            listOfExceptions = new ExceptionsList();
         }
 
-        public void validateData()
+        public ExceptionsList validateData(string theme, string begin_date, string end_date)
         {
-            if (this.verifyNull())
+            if (this.verifyNull(theme,begin_date,end_date))
             {
-                throw new EmptyDataException();
-
+                // throw new EmptyDataException();
+                this.listOfExceptions.listOfExceptions.Add(new EmptyDataException());
             }
-            if (this.verifyDates())
+            if (this.verifyDates(theme, begin_date, end_date))
             {
-                throw new WrongDatesException();
-
+                // throw new WrongDatesException();
+                this.listOfExceptions.listOfExceptions.Add(new WrongDatesException());
             }
+
+            return this.listOfExceptions;
 
         }
 
-        private bool verifyDates()
+        private bool verifyDates(string theme, string begin_date, string end_date)
         {
-
             int begin_dateInt;
             int end_dateInt;
-            Int32.TryParse(this.Begin_date,out begin_dateInt);
-            Int32.TryParse(this.End_date,out end_dateInt);
+            Int32.TryParse(begin_date,out begin_dateInt);
+            Int32.TryParse(end_date,out end_dateInt);
             return (begin_dateInt > end_dateInt);
         }
 
-        private bool verifyNull()
+        private bool verifyNull(string theme, string begin_date, string end_date)
         {
-            return (string.IsNullOrEmpty(Theme) || string.IsNullOrEmpty(Begin_date) || string.IsNullOrEmpty(End_date));
+            return (string.IsNullOrEmpty(theme) || string.IsNullOrEmpty(begin_date) || string.IsNullOrEmpty(end_date));
         }
     }
 }

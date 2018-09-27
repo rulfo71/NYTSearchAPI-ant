@@ -6,43 +6,68 @@ using NYTWebApi.Services;
 using Microsoft.AspNetCore.Cors;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using System.Net;
+using System.Net.Http;
+using System.Globalization;
+using System.Linq;
 
 namespace NYTWebApi.Controllers
 {
     //[Route("api/[controller]")]
 
     [Route("[controller]")]
-    [ApiController] 
+    [ApiController]
     public class NewsController : ControllerBase
     {
         private IConfiguration configuration;
+        private List<Doc> ListOfArticles = new List<Doc>();
+        private ExceptionsList listOfExceptions = new ExceptionsList();
+        private ArticlesService ArticlesService;
+        private QueryValidator Validator;
         public NewsController(IConfiguration iConfig)
         {
             configuration = iConfig;
+            this.ArticlesService = new ArticlesService(this.configuration);
+            this.Validator = new QueryValidator();
         }
         //GET /values
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<Doc>))]
         [ProducesResponseType(422)]
+        [ProducesResponseType(504)]
         public async Task<ActionResult> GetAsync([FromQuery] NewsUrlParameters FilterParams)
         {
-            var validator = new QueryValidator(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
+            listOfExceptions = this.Validator.validateData(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
+            if (listOfExceptions.listOfExceptions.Any())
+            {
+                listOfExceptions.prepareMessage();
+                return new UnprocessableEntityObjectResult(listOfExceptions.Messages);
+            }
+
+
+            // var validator = new QueryValidator();
+            // try
+            // {
+            //     validator.validateData(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
+            // }
+            // catch (EmptyDataException)
+            // {
+            //     return new UnprocessableEntityObjectResult("You have to fill the data");
+            // }
+            // catch (WrongDatesException)
+            // {
+            //     return new UnprocessableEntityObjectResult("End date must be later than Begin Date");
+            // }
+
             try
             {
-                validator.validateData();
+                this.ListOfArticles = await this.ArticlesService.GetNewsAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
             }
-            catch (EmptyDataException)
+            catch (HttpRequestException)
             {
-                return new UnprocessableEntityObjectResult("You have to fill the data");
+                return StatusCode(503);
             }
-            catch (WrongDatesException) 
-            {
-                return new UnprocessableEntityObjectResult("End date must be later than Begin Date");
-            }
-
-            var articlesService = new ArticlesService(this.configuration);
-            return Ok(await articlesService.GetNewsAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date));
+            return Ok(this.ListOfArticles);
         }
     }
-
 }

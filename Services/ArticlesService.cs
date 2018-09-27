@@ -24,8 +24,6 @@ namespace NYTWebApi.Services
         }
         public async Task<List<Doc>> GetNewsAsync(string theme, string begin_date, string end_date)
         {
-
-
             string urlConfig = configuration.GetSection("MySettings").GetSection("url").Value;
             Console.WriteLine(urlConfig);
             string apiConfig = configuration.GetSection("MySettings").GetSection("api_key").Value;
@@ -35,16 +33,17 @@ namespace NYTWebApi.Services
             var list_of_fields = "web_url,snippet,headline,pub_date";
             var orderBy = "newest";
 
-            var urlComplete = $"{url}&q={theme}&begin_date={begin_date}&end_date={end_date}&fl={list_of_fields}&sort={orderBy}";
+            var urlComplete = $"{url}&q={theme}&begin_date={begin_date.ToString()}&end_date={end_date.ToString()}&fl={list_of_fields}&sort={orderBy}";
 
             response = await httpClient.GetAsync(urlComplete);
             try
             {
                 response.EnsureSuccessStatusCode();
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException exception)
             {
                 response.StatusCode = HttpStatusCode.ServiceUnavailable;
+                throw exception;
             }
             string responseBody = await response.Content.ReadAsStringAsync();
             RootObj rootObj = JsonConvert.DeserializeObject<RootObj>(responseBody);
