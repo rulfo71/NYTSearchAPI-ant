@@ -25,16 +25,11 @@ namespace NYTWebApi.Services
         public async Task<List<Doc>> GetNewsAsync(string theme, string begin_date, string end_date)
         {
             string urlConfig = configuration.GetSection("MySettings").GetSection("url").Value;
-            Console.WriteLine(urlConfig);
             string apiConfig = configuration.GetSection("MySettings").GetSection("api_key").Value;
-            Console.WriteLine(apiConfig);
             var url = $"{urlConfig}{apiConfig}";
-
             var list_of_fields = "web_url,snippet,headline,pub_date";
             var orderBy = "newest";
-
             var urlComplete = $"{url}&q={theme}&begin_date={begin_date.ToString()}&end_date={end_date.ToString()}&fl={list_of_fields}&sort={orderBy}";
-
             response = await httpClient.GetAsync(urlComplete);
             try
             {
@@ -42,19 +37,20 @@ namespace NYTWebApi.Services
             }
             catch (HttpRequestException exception)
             {
-                response.StatusCode = HttpStatusCode.ServiceUnavailable;
                 throw exception;
             }
             string responseBody = await response.Content.ReadAsStringAsync();
             RootObj rootObj = JsonConvert.DeserializeObject<RootObj>(responseBody);
 
-            //keep first 10
-            rootObj.response.docs = rootObj.response.docs.Take(10);
+            rootObj.response.docs = await this.KeepFirstArticles(rootObj.response.docs, 10);
 
-            await this.checkUrlsStatusAsync(rootObj);
+            await this.CheckUrlsStatusAsync(rootObj);
             return rootObj.response.docs.ToList();
         }
-        private async Task checkUrlsStatusAsync(RootObj rootObj)
+        public async Task<IEnumerable<Doc>> KeepFirstArticles(IEnumerable<Doc> docs, int numberOfArticles){
+            return docs.Take(numberOfArticles);
+        }
+        private async Task CheckUrlsStatusAsync(RootObj rootObj)
         {
             foreach (var article in rootObj.response.docs)
             {

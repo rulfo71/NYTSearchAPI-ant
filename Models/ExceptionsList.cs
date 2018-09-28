@@ -11,13 +11,12 @@ namespace NYTWebApi.Models
             listOfExceptions = new List<Exception>();
         }
 
-        public void prepareMessage(){
+        public void PrepareMessage(){
             foreach (var exception in listOfExceptions)
             {
                 this.Messages += exception.Message;
             }
 
         }
-
     }
 }

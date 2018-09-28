@@ -37,28 +37,12 @@ namespace NYTWebApi.Controllers
         [ProducesResponseType(504)]
         public async Task<ActionResult> GetAsync([FromQuery] NewsUrlParameters FilterParams)
         {
-            listOfExceptions = this.Validator.validateData(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
+            listOfExceptions = this.Validator.ValidateData(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
             if (listOfExceptions.listOfExceptions.Any())
             {
-                listOfExceptions.prepareMessage();
+                listOfExceptions.PrepareMessage();
                 return new UnprocessableEntityObjectResult(listOfExceptions.Messages);
             }
-
-
-            // var validator = new QueryValidator();
-            // try
-            // {
-            //     validator.validateData(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);
-            // }
-            // catch (EmptyDataException)
-            // {
-            //     return new UnprocessableEntityObjectResult("You have to fill the data");
-            // }
-            // catch (WrongDatesException)
-            // {
-            //     return new UnprocessableEntityObjectResult("End date must be later than Begin Date");
-            // }
-
             try
             {
                 this.ListOfArticles = await this.ArticlesService.GetNewsAsync(FilterParams.Theme, FilterParams.Begin_date, FilterParams.End_date);

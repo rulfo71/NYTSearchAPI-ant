@@ -9,5 +9,14 @@ namespace NYTWebApi.Models
         public object name { get; set; }
         public object seo { get; set; }
         public object sub { get; set; }
+
+        public Headline(string main, string kicker, string content_kicker, object name, object seo, object sub){
+            this.main = main; 
+            this.kicker = kicker;
+            this.content_kicker = content_kicker;
+            this.name = name;
+            this.seo = seo;
+            this.sub = sub;
+        }
     }
 }
