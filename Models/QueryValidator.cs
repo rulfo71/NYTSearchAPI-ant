@@ -12,14 +12,12 @@ namespace NYTWebApi.Models
         }
         public ExceptionsList ValidateData(string theme, string begin_date, string end_date)
         {
-            if (this.VerifyNull(theme,begin_date,end_date))
+            if (this.VerifyNullOrEmpty(theme,begin_date,end_date))
             {
-                // throw new EmptyDataException();
                 this.listOfExceptions.listOfExceptions.Add(new EmptyDataException());
             }
             if (this.VerifyDates(theme, begin_date, end_date))
             {
-                // throw new WrongDatesException();
                 this.listOfExceptions.listOfExceptions.Add(new WrongDatesException());
             }
             return this.listOfExceptions;
@@ -34,7 +32,7 @@ namespace NYTWebApi.Models
             return (begin_dateInt > end_dateInt);
         }
 
-        private bool VerifyNull(string theme, string begin_date, string end_date)
+        private bool VerifyNullOrEmpty(string theme, string begin_date, string end_date)
         {
             return (string.IsNullOrEmpty(theme) || string.IsNullOrEmpty(begin_date) || string.IsNullOrEmpty(end_date));
         }

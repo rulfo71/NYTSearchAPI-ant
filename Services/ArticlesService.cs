@@ -42,12 +42,12 @@ namespace NYTWebApi.Services
             string responseBody = await response.Content.ReadAsStringAsync();
             RootObj rootObj = JsonConvert.DeserializeObject<RootObj>(responseBody);
 
-            rootObj.response.docs = await this.KeepFirstArticles(rootObj.response.docs, 10);
+            rootObj.response.docs = this.KeepFirstArticles(rootObj.response.docs, 10);
 
             await this.CheckUrlsStatusAsync(rootObj);
             return rootObj.response.docs.ToList();
         }
-        public async Task<IEnumerable<Doc>> KeepFirstArticles(IEnumerable<Doc> docs, int numberOfArticles){
+        public IEnumerable<Doc> KeepFirstArticles(IEnumerable<Doc> docs, int numberOfArticles){
             return docs.Take(numberOfArticles);
         }
         private async Task CheckUrlsStatusAsync(RootObj rootObj)
